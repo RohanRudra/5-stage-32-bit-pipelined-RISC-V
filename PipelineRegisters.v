@@ -44,22 +44,22 @@ module ID_EX(clk, reset, fun7, fun3, RegW, MemtoReg, MemW, MemR, Branch, ALUOp, 
 endmodule
 
 
-module EX_MEM(clk, reset, RegW, MemtoReg, MemW, MemR, Branch, ALUResult, MemWrData, ID_EX_RegRd, B, RegW_o, MemtoReg_o, MemW_o, MemR_o, Branch_o, ALUResult_o, MemWrData_o, EX_MEM_RegRd, B_Out);
+module EX_MEM(clk, reset, RegW, MemtoReg, MemW, MemR, Branch, ALUResult, MemWrData, ID_EX_RegRd, RegW_o, MemtoReg_o, MemW_o, MemR_o, Branch_o, ALUResult_o, MemWrData_o, EX_MEM_RegRd);
     input clk, reset, RegW, MemtoReg, MemW, MemR, Branch;
-    input [31:0] ALUResult, MemWrData, B;
+    input [31:0] ALUResult, MemWrData;
     input [4:0] ID_EX_RegRd;
     output reg RegW_o, MemtoReg_o, MemW_o, MemR_o, Branch_o;
-    output reg [31:0] ALUResult_o, MemWrData_o, B_Out;
+    output reg [31:0] ALUResult_o, MemWrData_o;
     output reg [4:0] EX_MEM_RegRd;
 
     always@(posedge clk or posedge reset) begin
         if(reset) begin
-            {RegW_o, MemtoReg_o, MemW_o, MemR_o, Branch_o, ALUResult_o, MemWrData_o, EX_MEM_RegRd, B_Out} 
-                <= {1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 32'd0, 32'd0, 5'd0, 32'd0};
+            {RegW_o, MemtoReg_o, MemW_o, MemR_o, Branch_o, ALUResult_o, MemWrData_o, EX_MEM_RegRd} 
+                <= {1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 32'd0, 32'd0, 5'd0};
         end
         else begin
-            {RegW_o, MemtoReg_o, MemW_o, MemR_o, Branch_o, ALUResult_o, MemWrData_o, EX_MEM_RegRd, B_Out} 
-                <= {RegW, MemtoReg, MemW, MemR, Branch, ALUResult, MemWrData, ID_EX_RegRd, B};            
+            {RegW_o, MemtoReg_o, MemW_o, MemR_o, Branch_o, ALUResult_o, MemWrData_o, EX_MEM_RegRd} 
+                <= {RegW, MemtoReg, MemW, MemR, Branch, ALUResult, MemWrData, ID_EX_RegRd};            
         end
     end
 

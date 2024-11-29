@@ -63,11 +63,11 @@ module top(clk, reset);
 
     Forward_Unit Forward_Unit(.ID_EX_RegRs1(ID_EX_RegRs1), .ID_EX_RegRs2(ID_EX_RegRs2), .EX_MEM_RegW(EX_MEM_RegW), .EX_MEM_RegRd(EX_MEM_RegRd), .MEM_WB_RegW(MEM_WB_RegW), .MEM_WB_RegRd(MEM_WB_RegRd), .Mux_A(MuxA_s), .Mux_B(MuxB_s));
 
-    EX_MEM EX_MEM(.clk(clk), .reset(reset), .RegW(ID_EX_RegW), .MemtoReg(ID_EX_MemtoReg), .MemW(ID_EX_MemW), .MemR(ID_EX_MemR), .Branch(ID_EX_branch), .ALUResult(ALU_Result), .MemWrData(MuxB_out), .ID_EX_RegRd(ID_EX_RegRd), .B(ID_EX_B), 
-        .RegW_o(EX_MEM_RegW), .MemtoReg_o(EX_MEM_MemtoReg), .MemW_o(EX_MEM_MemW), .MemR_o(EX_MEM_MemR), .Branch_o(EX_MEM_branch), .ALUResult_o(EX_MEM_ALUResult), .MemWrData_o(EX_MEM_MemWrData), .EX_MEM_RegRd(EX_MEM_RegRd), .B_Out(EX_MEM_B));
+    EX_MEM EX_MEM(.clk(clk), .reset(reset), .RegW(ID_EX_RegW), .MemtoReg(ID_EX_MemtoReg), .MemW(ID_EX_MemW), .MemR(ID_EX_MemR), .Branch(ID_EX_branch), .ALUResult(ALU_Result), .MemWrData(ID_EX_B), .ID_EX_RegRd(ID_EX_RegRd), 
+        .RegW_o(EX_MEM_RegW), .MemtoReg_o(EX_MEM_MemtoReg), .MemW_o(EX_MEM_MemW), .MemR_o(EX_MEM_MemR), .Branch_o(EX_MEM_branch), .ALUResult_o(EX_MEM_ALUResult), .MemWrData_o(EX_MEM_MemWrData), .EX_MEM_RegRd(EX_MEM_RegRd));
 
     //Stage 4
-    DataMemory DataMemory(.clk(clk), .reset(reset), .MemWrite(EX_MEM_MemW), .MemRead(EX_MEM_MemR), .Mem_Addr(EX_MEM_ALUResult), .wr_data(EX_MEM_B), .rd_data(Data_Mem_RdData));
+    DataMemory DataMemory(.clk(clk), .reset(reset), .MemWrite(EX_MEM_MemW), .MemRead(EX_MEM_MemR), .Mem_Addr(EX_MEM_ALUResult), .wr_data(EX_MEM_MemWrData), .rd_data(Data_Mem_RdData));
 
     MEM_WB MEM_WB(.clk(clk), .reset(reset), .RegW(EX_MEM_RegW), .MemtoReg(EX_MEM_MemtoReg), .RdData(Data_Mem_RdData), .RegWrData(EX_MEM_ALUResult), .EX_MEM_RegRd(EX_MEM_RegRd), .RegW_o(MEM_WB_RegW), .MemtoReg_o(MEM_WB_MemtoReg), .RdData_o(MEM_WB_MemRdData), .RegWrData_o(MEM_WB_RegWrData), .MEM_WB_RegRd(MEM_WB_RegRd));
 
