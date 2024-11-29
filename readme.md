@@ -13,7 +13,7 @@ The processor is compliant with the RISC-V ISA, supporting arithmetic, logical, 
 ---
 
 ## 🚀 Features
-- **32-bit Processor**: Fully implements a 32-bit data path.
+- **32-bit Processor**: Fully implements a 32-bit data.
 - **5-Stage Pipelining**: Pipeline stages include IF, ID, EX, MEM, and WB.
 - **Data Forwarding and Hazard Detection**:
   - Implements forwarding to resolve data hazards.
