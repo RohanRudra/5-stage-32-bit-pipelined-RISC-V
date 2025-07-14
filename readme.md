@@ -31,7 +31,7 @@ This processor supports a basic subset of the **MIPS ISA**, making it suitable f
 
 ## 📍 Architecture Flow Diagram
 
-![Architecture Diagram](https://github.com/RohanRudra/RISC-V-Pipelined/blob/master/Flow%20Diagram.png)
+![Architecture Diagram](https://github.com/RohanRudra/5-stage-32-bit-pipelined-MIPS/blob/master/Flow%20Diagram%20New.png)
 
 
 
