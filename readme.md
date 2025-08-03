@@ -33,7 +33,7 @@ This processor supports a basic subset of the **MIPS ISA**, making it suitable f
 
 ![Architecture Diagram](https://github.com/RohanRudra/5-stage-32-bit-pipelined-MIPS/blob/master/Flow%20Diagram%20New.png)
 
-
-
+## 📍 Instructions Format
+![Instructions Format](https://github.com/RohanRudra/5-stage-32-bit-pipelined-MIPS/blob/master/instr_type_format.png)
 
 
