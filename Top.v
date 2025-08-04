@@ -9,7 +9,9 @@
 `include "PipelineRegisters.v"
 `include "Program_Counter.v"
 `include "Registers.v"
+`include "HazardDetectUnit.v"
 `include "EqualCheck.v"
+
 
 module top(clk, reset);
     input clk, reset; 
@@ -17,7 +19,7 @@ module top(clk, reset);
     wire branch, MemRead, MemtoReg, MemWrite, ALUSrc, RegWrite, EqualFlag, PCSrc;
     wire [1:0] ALUOp;
 
-    wire ID_EX_RegW, ID_EX_MemtoReg, ID_EX_MemW, ID_EX_MemR, ID_EX_branch, ID_EX_ALUSrc, fun7_o, zero;
+    wire ID_EX_RegW, ID_EX_MemtoReg, ID_EX_MemW, ID_EX_MemR, ID_EX_branch, ID_EX_ALUSrc, fun7_o, zero, block_control, PC_Write, IF_ID_Write;
     wire [1:0] ID_EX_ALUOp, MuxA_s, MuxB_s;
     wire [2:0] fun3_o;
     wire [3:0] control_out;
@@ -35,11 +37,11 @@ module top(clk, reset);
 
     //Stage 1
     Mux2x1 muxPC(.a1(PCplus4_t), .a2(target_PC), .out(PC_in_t), .s(PCSrc));
-    Program_Counter PC(.clk(clk), .reset(reset), .PC_in(PC_in_t), .PC_out(PC_out_t));
+    Program_Counter PC(.clk(clk), .reset(reset), .PC_in(PC_in_t), .PC_out(PC_out_t), .PC_Write(PC_Write));
     PCplus4 PCplus4(.fromPC(PC_out_t), .NextPC(PCplus4_t));
     Instruction_Memory InstrMem(.clk(clk), .reset(reset), .pc(PC_out_t), .instr(instr_t));
 
-    IF_ID IF_ID(.clk(clk), .reset(reset), .PC(PC_out_t), .instr(instr_t), .PC_out(IF_ID_PC), .instr_out(IF_ID_instr));
+    IF_ID IF_ID(.clk(clk), .reset(reset), .PC(PC_out_t), .instr(instr_t), .PC_out(IF_ID_PC), .instr_out(IF_ID_instr), .IF_ID_Write(IF_ID_Write));
 
     //Stage 2
     RegisterBlock registers(.clk(clk), .reset(reset), .rs1(IF_ID_instr[19:15]), .rs2(IF_ID_instr[24:20]), .rd_data1(rd_data1), .rd_data2(rd_data2), .regWr(MEM_WB_RegW), .ws(MEM_WB_RegRd), .wr_data(MEM_WB_WrRdDATA));
@@ -49,7 +51,8 @@ module top(clk, reset);
     
     ImmGen ImmGen(.Opcode(IF_ID_instr[6:0]), .instruction(IF_ID_instr), .ImmOutput(imm_out));
     Adder adder(.a1(imm_out), .a2(IF_ID_PC), .out(target_PC));
-    Control control(.instruction(IF_ID_instr[6:0]), .Branch(branch), .MemRead(MemRead), .MemtoReg(MemtoReg), .ALUOp(ALUOp), .MemWrite(MemWrite), .ALUSrc(ALUSrc), .RegWrite(RegWrite));
+    HazardDetectUnit HazardDU(.clk(clk), .rst(reset), .ID_EX_MemR(ID_EX_MemR), .ID_EX_RegRd(ID_EX_RegRd), .IF_ID_RegRs1(IF_ID_instr[19:15]), .IF_ID_RegRs2(IF_ID_instr[24:20]), .block_control(block_control), .PC_Write(PC_Write), .IF_ID_Write(IF_ID_Write));
+    Control control(.instruction(IF_ID_instr[6:0]), .Branch(branch), .MemRead(MemRead), .MemtoReg(MemtoReg), .ALUOp(ALUOp), .MemWrite(MemWrite), .ALUSrc(ALUSrc), .RegWrite(RegWrite), .block_control(block_control));
     
     ID_EX ID_EX(.clk(clk), .reset(reset), .fun7(IF_ID_instr[30]), .fun3(IF_ID_instr[14:12]), .RegW(RegWrite), .MemtoReg(MemtoReg), .MemW(MemWrite), .MemR(MemRead), .Branch(branch), .ALUOp(ALUOp), .ALUSrc(ALUSrc), .A(rd_data1), .B(rd_data2), .IF_ID_Imm(imm_out), .IF_ID_RegRs1(IF_ID_instr[19:15]), .IF_ID_RegRs2(IF_ID_instr[24:20]), .IF_ID_RegRd(IF_ID_instr[11:7]),
         .fun7_o(fun7_o), .fun3_o(fun3_o), .RegW_o(ID_EX_RegW), .MemtoReg_o(ID_EX_MemtoReg), .MemW_o(ID_EX_MemW), .MemR_o(ID_EX_MemR), .Branch_o(ID_EX_branch), .ALUOp_o(ID_EX_ALUOp), .ALUSrc_o(ID_EX_ALUSrc), .A_o(ID_EX_A), .B_o(ID_EX_B), .ID_EX_Imm(ID_EX_ImmData), .ID_EX_RegRs1(ID_EX_RegRs1), .ID_EX_RegRs2(ID_EX_RegRs2), .ID_EX_RegRd(ID_EX_RegRd));

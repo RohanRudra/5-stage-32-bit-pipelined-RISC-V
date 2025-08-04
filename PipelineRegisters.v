@@ -1,16 +1,18 @@
-module IF_ID(clk, reset, PC, instr, PC_out, instr_out);
-    input clk,reset;
+module IF_ID(clk, reset, PC, instr, PC_out, instr_out, IF_ID_Write);
+    input clk, reset, IF_ID_Write;
     input [31:0] PC,instr;
     output reg [31:0] PC_out, instr_out;
 
     always@(posedge clk or posedge reset) begin
-        if(reset) begin
-            PC_out <= 32'd0;
-            instr_out <= 32'd0;
-        end
-        else begin
-            PC_out <= PC;
-            instr_out <= instr;
+        if (IF_ID_Write) begin
+            if(reset) begin
+                PC_out <= 32'd0;
+                instr_out <= 32'd0;
+            end
+            else begin
+                PC_out <= PC;
+                instr_out <= instr;
+            end
         end
     end
 endmodule
