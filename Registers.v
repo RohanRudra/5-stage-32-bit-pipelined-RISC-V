@@ -48,9 +48,6 @@ module RegisterBlock(clk, reset, rs1, rs2, rd_data1, rd_data2, regWr, ws, wr_dat
         end
     end
 
-    // assign rd_data1 = reg_array[rs1];   
-    // assign rd_data2 = reg_array[rs2];
-
     assign rd_data1 = (regWr && ws != 0 && ws == rs1) ? wr_data : reg_array[rs1];
     assign rd_data2 = (regWr && ws != 0 && ws == rs2) ? wr_data : reg_array[rs2];
 
