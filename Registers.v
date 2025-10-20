@@ -13,7 +13,7 @@ module RegisterBlock(clk, reset, rs1, rs2, rd_data1, rd_data2, regWr, ws, wr_dat
         // reg_array[2] = 2;
         // reg_array[3] = 7;
         // reg_array[4] = 53;
-        // reg_array[5] = 5;
+        // reg_array[5] = 9;
         // reg_array[6] = 3;
         // reg_array[7] = 6;
         // reg_array[8] = 12;
@@ -43,12 +43,15 @@ module RegisterBlock(clk, reset, rs1, rs2, rd_data1, rd_data2, regWr, ws, wr_dat
     end
 
     always @(posedge clk) begin
-        if(regWr) begin
+        if(regWr && ws != 5'd0) begin
             reg_array[ws] <= wr_data;  //synchronous write
         end
     end
 
-    assign rd_data1 = reg_array[rs1];   
-    assign rd_data2 = reg_array[rs2];
+    // assign rd_data1 = reg_array[rs1];   
+    // assign rd_data2 = reg_array[rs2];
+
+    assign rd_data1 = (regWr && ws != 0 && ws == rs1) ? wr_data : reg_array[rs1];
+    assign rd_data2 = (regWr && ws != 0 && ws == rs2) ? wr_data : reg_array[rs2];
 
 endmodule

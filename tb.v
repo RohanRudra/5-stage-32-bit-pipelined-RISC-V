@@ -1,4 +1,4 @@
-`include "Top.v"
+//`include "Top.v"
 
 module tb;
     reg clk, reset;
@@ -8,8 +8,10 @@ module tb;
         clk = 0;
         reset = 1;
 
-        #5 reset = 0;
-        #500;
+        #15 reset = 0;
+
+        #800;
+        $finish;
     end
 
     always begin
