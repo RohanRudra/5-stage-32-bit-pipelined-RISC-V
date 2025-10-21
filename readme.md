@@ -48,12 +48,12 @@ The processor supports the **complete RV32I** instruction subset, including:
 ---
 
 ## 📍 Architecture Flow Diagram
-![Architecture Diagram](https://github.com/RohanRudra/5-stage-32-bit-pipelined-RISC-V/blob/master/Flow%20Diagram%20New.png)
+![Architecture Diagram](https://github.com/RohanRudra/5-stage-32-bit-pipelined-RISC-V/blob/master/images/Flow%20Diagram%20New.png)
 
 ---
 
 ## 📜 Instruction Format
-![Instructions Format](https://github.com/RohanRudra/5-stage-32-bit-pipelined-RISC-V/blob/master/Instrution_set.png)
+![Instructions Format](https://github.com/RohanRudra/5-stage-32-bit-pipelined-RISC-V/blob/master/images/instr_type_format.png)
 
 ---
 
