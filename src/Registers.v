@@ -7,7 +7,7 @@ module RegisterBlock(clk, reset, rs1, rs2, rd_data1, rd_data2, regWr, ws, wr_dat
     reg [31:0] reg_array [31:0]; //32 registers with each 32 bit data storage
 
     initial begin
-        $readmemh("C:/Users/Rohan/Desktop/verilog codes/RISC-V Pipelined Implementation/reg_init.mem", reg_array, 0, 31); // Specify range 0 to 31
+        $readmemh("C:/Users/Rohan/Desktop/verilog codes/RISC-V Pipelined Implementation/mem/reg_init.mem", reg_array, 0, 31); // Specify range 0 to 31
         // reg_array[0] = 0;
         // reg_array[1] = 4;
         // reg_array[2] = 2;

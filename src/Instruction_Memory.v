@@ -6,7 +6,7 @@ module Instruction_Memory(clk, reset, pc, instr);
     reg [31:0] I_memory [63:0];
 
     initial begin
-        $readmemh("C:/Users/Rohan/Desktop/verilog codes/RISC-V Pipelined Implementation/instrMem_init.mem", I_memory, 0, 25); // Specify range 0 to 63
+        $readmemh("C:/Users/Rohan/Desktop/verilog codes/RISC-V Pipelined Implementation/mem/instrMem_init.mem", I_memory, 0, 25); // Specify range 0 to 63
     end
 
     assign instr = I_memory[pc[31:2]];
