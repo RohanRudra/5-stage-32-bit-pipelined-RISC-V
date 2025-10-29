@@ -96,8 +96,8 @@ All stages were verified using **Icarus Verilog** and **Modelsim** for waveform 
 - End-to-end verification was done using compiled **C programs → Assembly → Binary** execution.  
 - Waveforms confirm correct data forwarding, hazard detection, and stall insertion.
 
-- ![](https://github.com/RohanRudra/5-stage-32-bit-pipelined-RISC-V/blob/master/images/waveform1.png)
-- ![](https://github.com/RohanRudra/5-stage-32-bit-pipelined-RISC-V/blob/master/images/waveform2.png)
+- ![Waveform 1](https://github.com/RohanRudra/5-stage-32-bit-pipelined-RISC-V/blob/master/images/waveform1.png)
+- ![Waveform 2](https://github.com/RohanRudra/5-stage-32-bit-pipelined-RISC-V/blob/master/images/waveform2.png)
 
 ---
 
