@@ -93,9 +93,11 @@ The processor supports the **complete RV32I** instruction subset, including:
 
 ## 🧪 Simulation & Testing
 All stages were verified using **Icarus Verilog** and **Modelsim** for waveform visualization.  
-- Each instruction was tested with **unit testbenches**.  
 - End-to-end verification was done using compiled **C programs → Assembly → Binary** execution.  
 - Waveforms confirm correct data forwarding, hazard detection, and stall insertion.
+
+- ![](https://github.com/RohanRudra/5-stage-32-bit-pipelined-RISC-V/blob/master/images/waveform1.png)
+- ![](https://github.com/RohanRudra/5-stage-32-bit-pipelined-RISC-V/blob/master/images/waveform2.png)
 
 ---
 
