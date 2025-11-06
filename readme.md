@@ -70,10 +70,10 @@ The processor supports the **complete RV32I** instruction subset, including:
 ### 📊 Performance Metrics
 | Metric | Single-Cycle | Multi-Cycle | Pipelined | Improvement |
 |--------|---------------|---------------|--------------|---------------|
-| Min Operating Clock Period | 100ns | ~20ns | ~20ns | Faster Clock✅ |
+| Min Operating Clock Period | 100ns | ~20ns | ~20ns | Faster Clock |
 | Clock Cycles per Instruction (CPI) | 1.00 | 4.10 | 1.4 | 2.9× Faster |
 | Stall Rate | High | High | Reduced by 40% | ✅ |
-| Control Logic Area | Baseline | -20% Reduction | -15% Reduction✅ |
+| Control Logic Area | Baseline | -20% Reduction | -15% Reduction |
 | Instruction Coverage | 70% | 70% | 100% | ✅ |
 
 ---
