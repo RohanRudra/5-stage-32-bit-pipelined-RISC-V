@@ -9,7 +9,7 @@ The pipelined design improves instruction throughput by overlapping the executio
 3. **Execute (EX)** – Performs arithmetic or logic operations using the ALU.  
 4. **Memory Access (MEM)** – Accesses data memory for load/store operations.  
 5. **Write Back (WB)** – Writes computation or memory results back to the register file.
-
+6. 
 ---
 
 ## 🚀 Features
@@ -68,12 +68,13 @@ The processor supports the **complete RV32I** instruction subset, including:
   - Conditional branching and loop-based programs
 
 ### 📊 Performance Metrics
-| Metric | Single-Cycle | Pipelined | Improvement |
-|--------|---------------|-----------|--------------|
-| Clock Cycles per Instruction (CPI) | 1.00 | 0.34 | 2.9× Faster |
-| Stall Rate | High | Reduced by 40% | ✅ |
-| Control Logic Area | Baseline | -20% Reduction | ✅ |
-| Instruction Coverage | 70% | 100% | ✅ |
+| Metric | Single-Cycle | Multi-Cycle | Pipelined | Improvement |
+|--------|---------------|---------------|--------------|---------------|
+| Min Operating Clock Period | 100ns | ~20ns | ~20ns | Faster Clock✅ |
+| Clock Cycles per Instruction (CPI) | 1.00 | 4.10 | 1.4 | 2.9× Faster |
+| Stall Rate | High | High | Reduced by 40% | ✅ |
+| Control Logic Area | Baseline | -20% Reduction | -15% Reduction✅ |
+| Instruction Coverage | 70% | 70% | 100% | ✅ |
 
 ---
 
