@@ -64,10 +64,8 @@ The processor supports the **complete RV32I** instruction subset, including:
 - ✅ Successfully executed C programs such as:
   - Factorial computation  
   - Fibonacci series generation  
-  - Array sorting  
-  - Matrix multiplication  
   - GCD/LCM calculation  
-  - Conditional branching and loop-based programs  
+  - Conditional branching and loop-based programs
 
 ### 📊 Performance Metrics
 | Metric | Single-Cycle | Pipelined | Improvement |
